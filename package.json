@@ -1,0 +1,29 @@
+{
+  "name": "edge-router-utils",
+  "version": "1.0.0",
+  "description": "Management of Ubiquity UniFy EdgeRouter",
+  "main": "index.js",
+  "dependencies": {
+    "ssh2-promise": "^1.0.0"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trabalka/edge-router-utils.git"
+  },
+  "keywords": [
+    "edgerouter",
+    "edge",
+    "router",
+    "switch",
+    "ubiquity",
+    "unify",
+    "node"
+  ],
+  "author": "Marek Trabalka",
+  "license": "CC0",
+  "bugs": {
+    "url": "https://github.com/trabalka/edge-router-utils/issues"
+  },
+  "homepage": "https://github.com/trabalka/edge-router-utils#readme"
+}
