@@ -16,10 +16,14 @@ npm install edge-router-utils
 ```
 cd /tmp
 ssh-keygen -t rsa -b 4096 -C "edge-router-utils" -N "" -f auth.key
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
-cat auth.key.pub >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
+configure
+set system login user edge-router-utils authentication plaintext-password `head -2 auth.key | tail -1`
+set system login user edge-router-utils authentication public-keys edge-router-utils type ssh-rsa
+set system login user edge-router-utils authentication public-keys edge-router-utils key `sed -E "s/ssh-rsa ([^[:space:]]+).*/\1/" auth.key.pub`
+set system login user edge-router-utils level admin
+commit
+save
+exit
 ```
 3. Copy content of your private key `/tmp/auth.key` and save it on your local computer in `auth.key` file somewhere on your system, usually close to your NodeJS script:
 ```
@@ -28,6 +32,10 @@ cat /tmp/auth.key
 4. Optionally copy also content of your public key `/tmp/auth.key.pub` and save it on your local computer in `auth.key.pub` file somewhere on your system, usually close to your NodeJS script:
 ```
 /tmp/auth.key.pub
+```
+5. Delete the key pair from router:
+```
+rm /tmp/auth.key*
 ```
 
 Note: If you already have key pair, you could also use following command to copy private key for authorisation easily on Mac and Linux:
